@@ -1,0 +1,8 @@
+{
+  "name": "speech",
+  "integrations": {
+    "capacitor": {},
+    "cordova": {}
+  },
+  "type": "angular"
+}
