@@ -12,3 +12,5 @@ export class AutenticaComponent implements OnInit {
   ngOnInit() {}
 
 }
+
+//Alguma coisa
