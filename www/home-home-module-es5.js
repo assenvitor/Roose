@@ -21,7 +21,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<!--<ion-header [translucent]=\"true\">\r\n  <ion-toolbar>\r\n    <ion-title>\r\n      Roose\r\n    </ion-title>\r\n  </ion-toolbar>\r\n</ion-header>\r\n\r\n<ion-content [fullscreen]=\"true\">\r\n\r\n\r\n\r\n  <ion-button (click)=\"getPermission()\">Permissao</ion-button>\r\n  <ion-button (click)=\"Start()\">Falar</ion-button>\r\n\r\n  <ion-card>\r\n    <ion-card-header> Você disse: </ion-card-header>\r\n    <ion-card-content>\r\n      <ion-list>\r\n        <ion-item *ngFor=\"let match of matches\">\r\n          {{ match }}\r\n        </ion-item>\r\n      </ion-list>\r\n    </ion-card-content>\r\n  </ion-card>\r\n  <ion-card *ngIf=\"filme\">\r\n    <ion-item>\r\n      <p>{{ filme }}</p>\r\n    </ion-item>\r\n  </ion-card>\r\n\r\n</ion-content> -->\r\n\r\n<ion-content padding [style.background-color]=\"bgcolor\">\r\n\r\n  <button  ion-button (click) = \"start()\"> diga a cor</button>\r\n\r\n</ion-content>";
+    __webpack_exports__["default"] = "<ion-header [translucent]=\"true\">\r\n  <ion-toolbar>\r\n    <ion-title>\r\n      Roose\r\n    </ion-title>\r\n  </ion-toolbar>\r\n</ion-header>\r\n\r\n<ion-content [fullscreen]=\"true\">\r\n\r\n\r\n\r\n  <ion-button (click)=\"getPermission()\">Permissão</ion-button>\r\n  <ion-button (click)=\"Start()\">Falar</ion-button>\r\n\r\n  <ion-card>\r\n    <ion-card-header> Você disse: </ion-card-header>\r\n    \r\n    <!-- <ion-card-content>\r\n      <ion-list>\r\n        <ion-item *ngFor=\"let match of matches\">\r\n          {{ match }}\r\n        </ion-item>\r\n      </ion-list>\r\n    </ion-card-content> -->\r\n\r\n    <ion-card-content>\r\n      <ion-list>\r\n        <ion-item *ngIf=\"filme\">\r\n          {{ filme }}\r\n        </ion-item>\r\n      </ion-list>\r\n    </ion-card-content>\r\n\r\n  </ion-card>\r\n\r\n  <!--<<ion-card *ngIf=\"filme\">\r\n    <ion-item>\r\n      <p>{{ filme }}</p>\r\n    </ion-item>\r\n  </ion-card>\r\n\r\n</ion-content> -->\r\n\r\n\r\n\r\n\r\n";
     /***/
   },
 
@@ -218,101 +218,88 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony import */
 
 
-    var _ionic_angular__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
-    /*! @ionic/angular */
-    "./node_modules/@ionic/angular/__ivy_ngcc__/fesm2015/ionic-angular.js");
-    /*import { SpeechRecognition } from '@ionic-native/speech-recognition/ngx';
-    import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
-    import { FilmeProvider } from 'src/providers/filmeProvider';
-    // import { CheckInProvider } from 'src/providers/checkInProvider';
-    
-    @Component({
-      selector: 'app-home',
-      templateUrl: 'home.page.html',
-      styleUrls: ['home.page.scss'],
-    })
-    export class HomePage implements OnInit {
-    
-      matches: string[];
-      isRecording = false;
-      constructor(
-        private speechRecognition: SpeechRecognition,
-        private cd: ChangeDetectorRef,
-        private filmeProvider: FilmeProvider
-      ) {
-    
-      }
-    
-    
-      Start() {
-        let options = {
-          language: 'pt-BR'
-        }
-        this.speechRecognition.startListening().subscribe(matches => {
-          this.matches = matches;
-          this.cd.detectChanges();
-        });
-        this.isRecording = true;
-      }
-      getPermission() {
-        this.speechRecognition.hasPermission()
-          .then((hasPermission: boolean) => {
-            if (!hasPermission) {
-              this.speechRecognition.requestPermission();
-            }
-          });
-      }
-    
-      ngOnInit() {
-        this.getFilme();
-        // this.getGreetings();
-      }
-    
-      filme
-      getFilme() {
-        this.filmeProvider.getFilme()
-          .then((res: any) => {
-            this.filme = res.filme;
-          })
-      }
-    
-    } */
-    // import { CheckInProvider } from 'src/providers/checkInProvider';
+    var src_providers_filmeProvider__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+    /*! src/providers/filmeProvider */
+    "./src/providers/filmeProvider.ts");
+    /* harmony import */
+
+
+    var _ionic_native_text_to_speech_ngx__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
+    /*! @ionic-native/text-to-speech/ngx */
+    "./node_modules/@ionic-native/text-to-speech/__ivy_ngcc__/ngx/index.js"); // import { CheckInProvider } from 'src/providers/checkInProvider';
 
 
     var HomePage = /*#__PURE__*/function () {
-      function HomePage(navCtrl, speechRecognition) {
+      function HomePage(speechRecognition, cd, filmeProvider, tts) {
         _classCallCheck(this, HomePage);
 
-        this.navCtrl = navCtrl;
         this.speechRecognition = speechRecognition;
-        this.bgcolor = 'red';
+        this.cd = cd;
+        this.filmeProvider = filmeProvider;
+        this.tts = tts;
+        this.isRecording = false;
       }
 
       _createClass(HomePage, [{
-        key: "ngOnInit",
-        value: function ngOnInit() {
+        key: "Start",
+        value: function Start() {
           var _this = this;
 
-          this.speechRecognition.hasPermission().then(function (hasPermission) {
-            if (!hasPermission) {
-              _this.speechRecognition.requestPermission().then(function () {
-                return console.log('Permitir');
-              }, function () {
-                return console.log('Negar');
-              });
+          var options = {
+            language: 'pt-BR',
+            matches: 5
+          };
+          this.speechRecognition.startListening(options).subscribe(function (matches) {
+            _this.matches = matches;
+
+            for (var i = 0; matches.length > i; i++) {
+              if (matches[i].toUpperCase().includes('ABRIR FILMES')) {
+                _this.getfilme();
+
+                break;
+              }
             }
+
+            _this.cd.detectChanges();
+          });
+          this.isRecording = true;
+        }
+      }, {
+        key: "getfilme",
+        value: function getfilme() {
+          var _this2 = this;
+
+          this.filmeProvider.getFilme().then(function (res) {
+            _this2.filme = res.filme;
+
+            _this2.resposta(res.filme).then(function () {//Executado apos o termino da fala
+            });
+
+            _this2.cd.detectChanges();
           });
         }
       }, {
-        key: "start",
-        value: function start() {
-          var _this2 = this;
+        key: "resposta",
+        value: function resposta(texto) {
+          var options = {
+            text: texto,
+            locale: 'en-US'
+          };
+          return this.tts.speak(options).then(function () {
+            return console.log('Success');
+          })["catch"](function (reason) {
+            return console.log(reason);
+          });
+        }
+      }, {
+        key: "getPermission",
+        value: function getPermission() {
+          var _this3 = this;
 
-          this.speechRecognition.startListening().subscribe(function (matches) {
-            _this2.bgcolor = matches[0];
-          }, function (onerror) {
-            return console.log('error:', onerror);
+          this.speechRecognition.hasPermission().then(function (hasPermission) {
+            if (!hasPermission) {
+              _this3.speechRecognition.requestPermission();
+            }
           });
         }
       }]);
@@ -322,9 +309,13 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
     HomePage.ctorParameters = function () {
       return [{
-        type: _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["NavController"]
-      }, {
         type: _ionic_native_speech_recognition_ngx__WEBPACK_IMPORTED_MODULE_1__["SpeechRecognition"]
+      }, {
+        type: _angular_core__WEBPACK_IMPORTED_MODULE_2__["ChangeDetectorRef"]
+      }, {
+        type: src_providers_filmeProvider__WEBPACK_IMPORTED_MODULE_3__["FilmeProvider"]
+      }, {
+        type: _ionic_native_text_to_speech_ngx__WEBPACK_IMPORTED_MODULE_4__["TextToSpeech"]
       }];
     };
 

@@ -5,6 +5,7 @@ import { RouteReuseStrategy } from '@angular/router';
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
+import { TextToSpeech } from '@ionic-native/text-to-speech/ngx';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -12,7 +13,7 @@ import { SlideComponent } from './slide/slide.component';
 import { AutenticaComponent } from './autentica/autentica.component';
 import { SpeechRecognition } from '@ionic-native/speech-recognition/ngx';
 import { HttpClientModule } from '@angular/common/http';
-import { FilmeProvider } from '../providers/filmeProvider';
+import { Provider } from '../providers/Provider';
 // import { CheckInProvider } from '../providers/checkInProvider';
 
 @NgModule({
@@ -23,12 +24,13 @@ import { FilmeProvider } from '../providers/filmeProvider';
     IonicModule.forRoot(),
     AppRoutingModule,
     HttpClientModule
-  ],
+      ],
   providers: [
     StatusBar,
     SplashScreen,
     SpeechRecognition,
-    FilmeProvider,
+    Provider,
+    TextToSpeech,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]

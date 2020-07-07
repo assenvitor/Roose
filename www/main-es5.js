@@ -478,43 +478,49 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony import */
 
 
-    var _app_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(
+    var _ionic_native_text_to_speech_ngx__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(
+    /*! @ionic-native/text-to-speech/ngx */
+    "./node_modules/@ionic-native/text-to-speech/__ivy_ngcc__/ngx/index.js");
+    /* harmony import */
+
+
+    var _app_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(
     /*! ./app.component */
     "./src/app/app.component.ts");
     /* harmony import */
 
 
-    var _app_routing_module__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(
+    var _app_routing_module__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(
     /*! ./app-routing.module */
     "./src/app/app-routing.module.ts");
     /* harmony import */
 
 
-    var _slide_slide_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(
+    var _slide_slide_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(
     /*! ./slide/slide.component */
     "./src/app/slide/slide.component.ts");
     /* harmony import */
 
 
-    var _autentica_autentica_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(
+    var _autentica_autentica_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(
     /*! ./autentica/autentica.component */
     "./src/app/autentica/autentica.component.ts");
     /* harmony import */
 
 
-    var _ionic_native_speech_recognition_ngx__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(
+    var _ionic_native_speech_recognition_ngx__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(
     /*! @ionic-native/speech-recognition/ngx */
     "./node_modules/@ionic-native/speech-recognition/__ivy_ngcc__/ngx/index.js");
     /* harmony import */
 
 
-    var _angular_common_http__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(
+    var _angular_common_http__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(
     /*! @angular/common/http */
     "./node_modules/@angular/common/__ivy_ngcc__/fesm2015/http.js");
     /* harmony import */
 
 
-    var _providers_filmeProvider__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(
+    var _providers_filmeProvider__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(
     /*! ../providers/filmeProvider */
     "./src/providers/filmeProvider.ts"); // import { CheckInProvider } from '../providers/checkInProvider';
 
@@ -524,14 +530,14 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     };
 
     AppModule = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
-      declarations: [_app_component__WEBPACK_IMPORTED_MODULE_7__["AppComponent"], _slide_slide_component__WEBPACK_IMPORTED_MODULE_9__["SlideComponent"], _autentica_autentica_component__WEBPACK_IMPORTED_MODULE_10__["AutenticaComponent"]],
+      declarations: [_app_component__WEBPACK_IMPORTED_MODULE_8__["AppComponent"], _slide_slide_component__WEBPACK_IMPORTED_MODULE_10__["SlideComponent"], _autentica_autentica_component__WEBPACK_IMPORTED_MODULE_11__["AutenticaComponent"]],
       entryComponents: [],
-      imports: [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_2__["BrowserModule"], _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["IonicModule"].forRoot(), _app_routing_module__WEBPACK_IMPORTED_MODULE_8__["AppRoutingModule"], _angular_common_http__WEBPACK_IMPORTED_MODULE_12__["HttpClientModule"]],
-      providers: [_ionic_native_status_bar_ngx__WEBPACK_IMPORTED_MODULE_6__["StatusBar"], _ionic_native_splash_screen_ngx__WEBPACK_IMPORTED_MODULE_5__["SplashScreen"], _ionic_native_speech_recognition_ngx__WEBPACK_IMPORTED_MODULE_11__["SpeechRecognition"], _providers_filmeProvider__WEBPACK_IMPORTED_MODULE_13__["FilmeProvider"], {
+      imports: [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_2__["BrowserModule"], _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["IonicModule"].forRoot(), _app_routing_module__WEBPACK_IMPORTED_MODULE_9__["AppRoutingModule"], _angular_common_http__WEBPACK_IMPORTED_MODULE_13__["HttpClientModule"]],
+      providers: [_ionic_native_status_bar_ngx__WEBPACK_IMPORTED_MODULE_6__["StatusBar"], _ionic_native_splash_screen_ngx__WEBPACK_IMPORTED_MODULE_5__["SplashScreen"], _ionic_native_speech_recognition_ngx__WEBPACK_IMPORTED_MODULE_12__["SpeechRecognition"], _providers_filmeProvider__WEBPACK_IMPORTED_MODULE_14__["FilmeProvider"], _ionic_native_text_to_speech_ngx__WEBPACK_IMPORTED_MODULE_7__["TextToSpeech"], {
         provide: _angular_router__WEBPACK_IMPORTED_MODULE_3__["RouteReuseStrategy"],
         useClass: _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["IonicRouteStrategy"]
       }],
-      bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_7__["AppComponent"]]
+      bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_8__["AppComponent"]]
     })], AppModule);
     /***/
   },
@@ -715,7 +721,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       return FILME;
     });
 
-    var FILME = 'https://topicos-avancados.herokuapp.com/getFilme/7';
+    var FILME = 'https://r4u.herokuapp.com/getFilme/7';
     /***/
   },
 
@@ -857,13 +863,18 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }
 
       _createClass(FilmeProvider, [{
+        key: "getfilmeProvider",
+        value: function getfilmeProvider() {
+          throw new Error("Method not implemented.");
+        }
+      }, {
         key: "getFilme",
         value: function getFilme() {
           return this.http.get(_environments_consts__WEBPACK_IMPORTED_MODULE_3__["FILME"]).toPromise().then(function (res) {
-            console.log(res);
+            //console.log(res);
             return res;
           })["catch"](function (error) {
-            console.log(error);
+            //console.log(error);
             return error;
           });
         }

@@ -9,7 +9,7 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<!--<ion-header [translucent]=\"true\">\r\n  <ion-toolbar>\r\n    <ion-title>\r\n      Roose\r\n    </ion-title>\r\n  </ion-toolbar>\r\n</ion-header>\r\n\r\n<ion-content [fullscreen]=\"true\">\r\n\r\n\r\n\r\n  <ion-button (click)=\"getPermission()\">Permissao</ion-button>\r\n  <ion-button (click)=\"Start()\">Falar</ion-button>\r\n\r\n  <ion-card>\r\n    <ion-card-header> Você disse: </ion-card-header>\r\n    <ion-card-content>\r\n      <ion-list>\r\n        <ion-item *ngFor=\"let match of matches\">\r\n          {{ match }}\r\n        </ion-item>\r\n      </ion-list>\r\n    </ion-card-content>\r\n  </ion-card>\r\n  <ion-card *ngIf=\"filme\">\r\n    <ion-item>\r\n      <p>{{ filme }}</p>\r\n    </ion-item>\r\n  </ion-card>\r\n\r\n</ion-content> -->\r\n\r\n<ion-content padding [style.background-color]=\"bgcolor\">\r\n\r\n  <button  ion-button (click) = \"start()\"> diga a cor</button>\r\n\r\n</ion-content>");
+/* harmony default export */ __webpack_exports__["default"] = ("<ion-header [translucent]=\"true\">\r\n  <ion-toolbar>\r\n    <ion-title>\r\n      Roose\r\n    </ion-title>\r\n  </ion-toolbar>\r\n</ion-header>\r\n\r\n<ion-content [fullscreen]=\"true\">\r\n\r\n\r\n\r\n  <ion-button (click)=\"getPermission()\">Permissão</ion-button>\r\n  <ion-button (click)=\"Start()\">Falar</ion-button>\r\n\r\n  <ion-card>\r\n    <ion-card-header> Você disse: </ion-card-header>\r\n    \r\n    <!-- <ion-card-content>\r\n      <ion-list>\r\n        <ion-item *ngFor=\"let match of matches\">\r\n          {{ match }}\r\n        </ion-item>\r\n      </ion-list>\r\n    </ion-card-content> -->\r\n\r\n    <ion-card-content>\r\n      <ion-list>\r\n        <ion-item *ngIf=\"filme\">\r\n          {{ filme }}\r\n        </ion-item>\r\n      </ion-list>\r\n    </ion-card-content>\r\n\r\n  </ion-card>\r\n\r\n  <!--<<ion-card *ngIf=\"filme\">\r\n    <ion-item>\r\n      <p>{{ filme }}</p>\r\n    </ion-item>\r\n  </ion-card>\r\n\r\n</ion-content> -->\r\n\r\n\r\n\r\n\r\n");
 
 /***/ }),
 
@@ -118,93 +118,72 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _ionic_native_speech_recognition_ngx__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @ionic-native/speech-recognition/ngx */ "./node_modules/@ionic-native/speech-recognition/__ivy_ngcc__/ngx/index.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
-/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/__ivy_ngcc__/fesm2015/ionic-angular.js");
-/*import { SpeechRecognition } from '@ionic-native/speech-recognition/ngx';
-import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
-import { FilmeProvider } from 'src/providers/filmeProvider';
-// import { CheckInProvider } from 'src/providers/checkInProvider';
+/* harmony import */ var src_providers_filmeProvider__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/providers/filmeProvider */ "./src/providers/filmeProvider.ts");
+/* harmony import */ var _ionic_native_text_to_speech_ngx__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @ionic-native/text-to-speech/ngx */ "./node_modules/@ionic-native/text-to-speech/__ivy_ngcc__/ngx/index.js");
 
-@Component({
-  selector: 'app-home',
-  templateUrl: 'home.page.html',
-  styleUrls: ['home.page.scss'],
-})
-export class HomePage implements OnInit {
-
-  matches: string[];
-  isRecording = false;
-  constructor(
-    private speechRecognition: SpeechRecognition,
-    private cd: ChangeDetectorRef,
-    private filmeProvider: FilmeProvider
-  ) {
-
-  }
-
-
-  Start() {
-    let options = {
-      language: 'pt-BR'
-    }
-    this.speechRecognition.startListening().subscribe(matches => {
-      this.matches = matches;
-      this.cd.detectChanges();
-    });
-    this.isRecording = true;
-  }
-  getPermission() {
-    this.speechRecognition.hasPermission()
-      .then((hasPermission: boolean) => {
-        if (!hasPermission) {
-          this.speechRecognition.requestPermission();
-        }
-      });
-  }
-
-  ngOnInit() {
-    this.getFilme();
-    // this.getGreetings();
-  }
-
-  filme
-  getFilme() {
-    this.filmeProvider.getFilme()
-      .then((res: any) => {
-        this.filme = res.filme;
-      })
-  }
-
-} */
 
 
 
 
 // import { CheckInProvider } from 'src/providers/checkInProvider';
 let HomePage = class HomePage {
-    constructor(navCtrl, speechRecognition) {
-        this.navCtrl = navCtrl;
+    constructor(speechRecognition, cd, filmeProvider, tts) {
         this.speechRecognition = speechRecognition;
-        this.bgcolor = 'red';
+        this.cd = cd;
+        this.filmeProvider = filmeProvider;
+        this.tts = tts;
+        this.isRecording = false;
     }
-    ngOnInit() {
+    Start() {
+        let options = {
+            language: 'pt-BR',
+            matches: 5
+        };
+        this.speechRecognition.startListening(options).subscribe(matches => {
+            this.matches = matches;
+            for (let i = 0; matches.length > i; i++) {
+                if (matches[i].toUpperCase().includes('ABRIR FILMES')) {
+                    this.getfilme();
+                    break;
+                }
+            }
+            this.cd.detectChanges();
+        });
+        this.isRecording = true;
+    }
+    getfilme() {
+        this.filmeProvider.getFilme()
+            .then((res) => {
+            this.filme = res.filme;
+            this.resposta(res.filme).then(() => {
+                //Executado apos o termino da fala
+            });
+            this.cd.detectChanges();
+        });
+    }
+    resposta(texto) {
+        let options = {
+            text: texto,
+            locale: 'en-US'
+        };
+        return this.tts.speak(options)
+            .then(() => console.log('Success'))
+            .catch((reason) => console.log(reason));
+    }
+    getPermission() {
         this.speechRecognition.hasPermission()
             .then((hasPermission) => {
             if (!hasPermission) {
-                this.speechRecognition.requestPermission()
-                    .then(() => console.log('Permitir'), () => console.log('Negar'));
+                this.speechRecognition.requestPermission();
             }
         });
     }
-    start() {
-        this.speechRecognition.startListening()
-            .subscribe((matches) => {
-            this.bgcolor = matches[0];
-        }, (onerror) => console.log('error:', onerror));
-    }
 };
 HomePage.ctorParameters = () => [
-    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["NavController"] },
-    { type: _ionic_native_speech_recognition_ngx__WEBPACK_IMPORTED_MODULE_1__["SpeechRecognition"] }
+    { type: _ionic_native_speech_recognition_ngx__WEBPACK_IMPORTED_MODULE_1__["SpeechRecognition"] },
+    { type: _angular_core__WEBPACK_IMPORTED_MODULE_2__["ChangeDetectorRef"] },
+    { type: src_providers_filmeProvider__WEBPACK_IMPORTED_MODULE_3__["FilmeProvider"] },
+    { type: _ionic_native_text_to_speech_ngx__WEBPACK_IMPORTED_MODULE_4__["TextToSpeech"] }
 ];
 HomePage = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["Component"])({

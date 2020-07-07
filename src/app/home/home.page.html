@@ -1,4 +1,4 @@
-<!--<ion-header [translucent]="true">
+<ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
       Roose
@@ -10,20 +10,31 @@
 
 
 
-  <ion-button (click)="getPermission()">Permissao</ion-button>
+  <ion-button (click)="getPermission()">Permissão</ion-button>
   <ion-button (click)="Start()">Falar</ion-button>
 
   <ion-card>
     <ion-card-header> Você disse: </ion-card-header>
-    <ion-card-content>
+    
+    <!-- <ion-card-content>
       <ion-list>
         <ion-item *ngFor="let match of matches">
           {{ match }}
         </ion-item>
       </ion-list>
+    </ion-card-content> -->
+
+    <ion-card-content>
+      <ion-list>
+        <ion-item *ngIf="filme">
+          {{ filme }}
+        </ion-item>
+      </ion-list>
     </ion-card-content>
+
   </ion-card>
-  <ion-card *ngIf="filme">
+
+  <!--<<ion-card *ngIf="filme">
     <ion-item>
       <p>{{ filme }}</p>
     </ion-item>
@@ -31,8 +42,6 @@
 
 </ion-content> -->
 
-<ion-content padding [style.background-color]="bgcolor">
 
-  <button  ion-button (click) = "start()"> diga a cor</button>
 
-</ion-content>
+
